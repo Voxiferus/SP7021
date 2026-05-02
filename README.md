@@ -40,8 +40,20 @@ Select configs (C chip).
 ```bash
 Select rootfs:
 [1] BusyBox
-[2] Full
+[2] Yocto
+[3] Ubuntu Server 20.04
+[4] Buildroot
 ```
+`Buildroot` is available for `[2] LTPP3G2 Board` and `[7] LTPP3G2 Board (S+)`.
+It keeps the vendor SDK responsible for xBoot, U-Boot, the Linux kernel and the
+DTB, while using an external Buildroot tree for the root filesystem. See
+[`README_SP7021_BUILDROOT.md`](README_SP7021_BUILDROOT.md) for the tested flow.
+
+The committed Buildroot SSH overlay intentionally contains an empty
+`authorized_keys` file. Copy your own public key into
+`board/sp7021/rootfs-overlay/root/.ssh/authorized_keys` locally before building
+a private image, and do not commit personal SSH keys.
+
 >If you want to change the kernel configuration, run:
 ```
 make kconfig
@@ -73,4 +85,3 @@ If you chose
   * insert your sdcard in the board and boot: power off, set SW1 to on, SW2 to on, power on
 
 For more information, please visit [here](https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/pages/375783435/SP7021+Application+Note)
-
