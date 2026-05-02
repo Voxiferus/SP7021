@@ -1,0 +1,29 @@
+#
+## uEnv.txt
+#
+
+KERNEL_IMG=uImage
+DTB_IMG=sp7021-ltpp3g2-sunplus.dtb
+SERVERIP=192.168.1.78
+CLIENTIP=192.168.1.199
+NETMASK=255.255.255.0
+GATEWAYIP=192.168.1.1
+sRpi_args=setenv filesize 0; fatsize $isp_if $isp_dev /cmdline.txt; if test $filesize != 0; then fatload $isp_if $isp_dev $addr_dst_dtb /cmdline.txt; raspb init $fileaddr $filesize; fi;
+
+## bootargs
+sbootargs=setenv bootargs console=tty1 console=ttyS0,115200 earlyprintk root=/dev/nfs rw nfsroot=${SERVERIP}:/home/leo/sunplus/nfs/sp7021,vers=3,tcp,nolock ip=dhcp user_debug=255 rootwait;
+
+## network
+snet=setenv autoload no; if dhcp; then echo DHCP OK: ${ipaddr}; else echo DHCP failed, using static ${CLIENTIP}; setenv ipaddr ${CLIENTIP}; setenv netmask ${NETMASK}; setenv gatewayip ${GATEWAYIP}; fi; setenv serverip ${SERVERIP}; echo TFTP server: ${serverip};
+
+## load kernel and dtb over TFTP
+sload_dtb=tftpboot ${addr_dst_dtb} ${SERVERIP}:${DTB_IMG};
+sload_kernel=tftpboot ${addr_dst_kernel} ${SERVERIP}:${KERNEL_IMG};
+
+## boot cmd
+sboot=bootm ${addr_dst_kernel} - ${addr_dst_dtb};
+uenvcmd=run snet; if run sload_dtb && run sload_kernel; then run sbootargs; run sboot; else echo TFTP load failed; fi;
+
+#
+## END
+#
