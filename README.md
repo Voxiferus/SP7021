@@ -6,10 +6,9 @@ pip install pycryptodomex pyelftools Crypto
 ```
 Fetch the source code:
 ```bash
-git clone https://github.com/sunplus-plus1/SP7021.git
+git clone https://github.com/Voxiferus/SP7021.git
 cd SP7021
 git submodule update --init --recursive
-git submodule foreach git checkout master
 ```
 Configure the build:
 ```bash
@@ -68,6 +67,10 @@ Build the kernel:
 ```
 make
 ```
+When `Rootfs: [4] Buildroot` is selected, `make` automatically downloads and
+extracts Buildroot 2026.02, applies `buildroot-sp7021-nfs.defconfig`, builds
+`buildroot-output/images/rootfs.tar`, and converts it to `out/rootfs.img`.
+
 If your local LANG is not english, please run
 ```
 LANG=c make

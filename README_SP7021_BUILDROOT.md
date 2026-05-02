@@ -27,14 +27,21 @@ the Buildroot rootfs option.
 
 ## Buildroot
 
-Use Buildroot 2026.02 or newer as a separate source tree:
+The SDK automatically downloads and extracts Buildroot 2026.02 when
+`ROOTFS_CONTENT=BUILDROOT` and `make rootfs` is reached:
+
+```sh
+make
+```
+
+Internally, the SDK runs the equivalent of:
 
 ```sh
 make -C buildroot-2026.02 O="$PWD/buildroot-output" BR2_DEFCONFIG="$PWD/buildroot-sp7021-nfs.defconfig" defconfig
 make -C buildroot-2026.02 O="$PWD/buildroot-output" BR2_DL_DIR="$PWD/buildroot-dl"
 ```
 
-The SDK expects this artifact:
+The generated Buildroot artifact is:
 
 ```text
 buildroot-output/images/rootfs.tar
@@ -54,6 +61,12 @@ To use a non-default Buildroot output path:
 
 ```sh
 make rootfs BUILDROOT_ROOTFS_TAR=/path/to/rootfs.tar
+```
+
+To override the Buildroot version or source URL:
+
+```sh
+make rootfs BUILDROOT_VERSION=2026.02 BUILDROOT_URL=https://buildroot.org/downloads/buildroot-2026.02.tar.xz
 ```
 
 ## SSH Key

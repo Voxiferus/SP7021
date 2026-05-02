@@ -1,2 +1,6 @@
 .config
 out/
+buildroot-*.tar.*
+buildroot-2026.02/
+buildroot-dl/
+buildroot-output/
