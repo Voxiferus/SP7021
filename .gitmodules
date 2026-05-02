@@ -21,7 +21,7 @@
 	url = https://github.com/sunplus-plus1/rootfs.git
 [submodule "build"]
 	path = build
-	url = https://github.com/Voxiferus/SP7021-build.git
+	url = git@github.com:Voxiferus/SP7021-build.git
 [submodule "freertos"]
 	path = freertos
 	url = https://github.com/sunplus-plus1/freertos
