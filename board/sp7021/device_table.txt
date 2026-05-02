@@ -1,0 +1,4 @@
+# <name>                         <type>  <mode>  <uid>  <gid>  <major> <minor> <start> <inc> <count>
+/root                            d       755     0      0      -       -       -       -     -
+/root/.ssh                       d       700     0      0      -       -       -       -     -
+/root/.ssh/authorized_keys       f       600     0      0      -       -       -       -     -
