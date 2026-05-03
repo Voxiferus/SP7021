@@ -1,6 +1,6 @@
 [submodule "linux/kernel"]
 	path = linux/kernel
-	url = https://github.com/sunplus-plus1/linux.git
+	url = git@github.com:Voxiferus/SP7021-linux.git
 [submodule "nonos/Bchip-non-os"]
 	path = nonos/Bchip-non-os
 	url = https://github.com/sunplus-plus1/Bchip-non-os.git
